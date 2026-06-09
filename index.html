@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Novoker - iOS Anti-Revoke DNS & KSign Installer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Novoker provides open-source iOS anti-revoke DNS profiles and an easy KSign installer for enterprise app management.">
+  <meta name="keywords" content="Novoker, iOS, Anti-Revoke, DNS, KSign, mobileconfig, Cloudflare Pages">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://novoker.pages.dev/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://novoker.pages.dev/">
+  <meta property="og:title" content="Novoker - iOS Anti-Revoke DNS & KSign Installer">
+  <meta property="og:description" content="Install KSign and access open-source anti-revoke DNSes for iOS enterprise apps.">
+  <meta property="og:image" content="https://novoker.pages.dev/og-image.png">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://novoker.pages.dev/">
+  <meta property="twitter:title" content="Novoker - iOS Anti-Revoke DNS & KSign Installer">
+  <meta property="twitter:description" content="Install KSign and access open-source anti-revoke DNSes for iOS enterprise apps.">
+  <meta property="twitter:image" content="https://novoker.pages.dev/og-image.png">
+
+  <style>
+    /* --- CSS Reset --- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      width: 100%;
+      min-height: 100dvh;
+      background-color: #050505;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* --- INSANE Animated Background --- */
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+      background: #000;
+    }
+    
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.6;
+      animation: float 20s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95);
+    }
+
+    .orb-1 {
+      width: 300px;
+      height: 300px;
+      background: #4A00E0;
+      top: -10%;
+      left: -10%;
+      animation-duration: 25s;
+    }
+
+    .orb-2 {
+      width: 350px;
+      height: 350px;
+      background: #8E2DE2;
+      bottom: -15%;
+      right: -10%;
+      animation-duration: 22s;
+      animation-delay: -5s;
+    }
+
+    .orb-3 {
+      width: 250px;
+      height: 250px;
+      background: #00C9FF;
+      top: 40%;
+      left: 60%;
+      animation-duration: 28s;
+      animation-delay: -10s;
+    }
+
+    .orb-4 {
+      width: 300px;
+      height: 300px;
+      background: #ff007f;
+      bottom: 20%;
+      left: -5%;
+      animation-duration: 30s;
+      animation-delay: -15s;
+    }
+
+    @keyframes float {
+      0% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -50px) scale(1.1); }
+      66% { transform: translate(-20px, 20px) scale(0.9); }
+      100% { transform: translate(40px, 50px) scale(1.05); }
+    }
+
+    /* --- Layout Container --- */
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100dvh;
+      width: 100%;
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* --- Modern Glassmorphism Panel --- */
+    .panel {
+      width: 100%;
+      max-width: 400px;
+      padding: 40px 30px;
+      border-radius: 28px;
+      background: rgba(20, 20, 25, 0.45);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 
+        0 30px 60px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      text-align: center;
+      animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    @keyframes slideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* --- Typography --- */
+    .logo-text {
+      font-size: 2.7rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #ffffff 0%, #a5a5a5 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 15px;
+      text-shadow: 0 4px 20px rgba(255,255,255,0.1);
+    }
+
+    .description {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.75);
+      margin-bottom: 30px;
+      font-weight: 400;
+    }
+
+    /* --- Buttons --- */
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .button {
+      position: relative;
+      width: 100%;
+      padding: 16px 20px;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      border-radius: 14px;
+      color: #fff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .button::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.1), transparent);
+      transform: translateX(-100%);
+      transition: 0.6s;
+    }
+
+    .button:hover::before {
+      transform: translateX(100%);
+    }
+
+    .button:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .button:active {
+      transform: translateY(1px);
+    }
+    
+    .button.primary {
+      background: linear-gradient(135deg, #4A00E0, #8E2DE2);
+      border: none;
+      box-shadow: 0 8px 20px rgba(142, 45, 226, 0.3);
+    }
+
+    .button.primary:hover {
+      background: linear-gradient(135deg, #5c0cf3, #9d3bf3);
+      box-shadow: 0 12px 25px rgba(142, 45, 226, 0.5);
+    }
+
+    .cert-note {
+      margin-top: 18px;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: rgba(0,0,0,0.25);
+      padding: 12px;
+      border-radius: 12px;
+    }
+
+    .cert-note b {
+      color: #fff;
+      font-weight: 600;
+      user-select: all;
+    }
+    
+    .icon {
+      width: 18px;
+      height: 18px;
+      margin-right: 8px;
+      fill: currentColor;
+    }
+
+    /* --- Notification Toast --- */
+    .toast-notification {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translate(-50%, -150%);
+      width: 90%;
+      max-width: 420px;
+      background: rgba(30, 20, 35, 0.65);
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      border: 1px solid rgba(255, 0, 127, 0.25);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      padding: 16px 20px;
+      border-radius: 16px;
+      z-index: 9999;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .toast-notification.show {
+      transform: translate(-50%, 0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .toast-icon {
+      width: 20px;
+      height: 20px;
+      fill: #ff007f;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .toast-content {
+      flex-grow: 1;
+      font-size: 0.88rem;
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.9);
+      text-align: left;
+    }
+
+    .toast-content strong {
+      color: #fff;
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .toast-close {
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      font-size: 1.2rem;
+      line-height: 1;
+      padding: 0 4px;
+      transition: color 0.2s;
+    }
+
+    .toast-close:hover {
+      color: #fff;
+    }
+
+    /* --- Footer --- */
+    footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.3);
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="statusToast" class="toast-notification">
+    <svg class="toast-icon" viewBox="0 0 24 24">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+    </svg>
+    <div class="toast-content">
+      <strong>We apologize for the inconvenience.</strong>
+      The certificate used in our install expired, causing a temporary downtime. This issue was resolved within 5 days.<br>We have updated the certificate and the new expiration date is set to early 2027.<br>Novoker Team
+    </div>
+    <button class="toast-close" id="closeToast">&times;</button>
+  </div>
+
+  <div class="bg-animation">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+  </div>
+
+  <div class="container">
+    <div class="panel">
+      <div class="logo-text">NOVOKER</div>
+      <p class="description">
+        Open‑source anti‑revoke for Apple devices. <br>
+        Keeps sideloaded apps alive, stable, and protected.
+      </p>
+
+      <div class="btn-group">
+        <a class="button primary" href="Novoker.mobileconfig">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M12 16L7 11l1.41-1.41L11 12.17V4h2v8.17l2.59-2.58L17 11l-5 5zm-6 4v-2h12v2H6z"/></svg>
+          Install Configuration
+        </a>
+
+        <a class="button" href="itms-services://?action=download-manifest&url=https://novoker.pages.dev/storage/KSign.plist">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+          Install KSigned
+        </a>
+
+        <a class="button" id="ksignBtn">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+          Download KSign
+        </a>
+        
+        <a class="button" id="certBtn">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M22 16V4c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2zm-11-4l2.03 2.71L16 11l4 5H8l3-4zM2 6v14c0 1.1.9 2 2 2h14v-2H4V6H2z"/></svg>
+          Get Certificate
+        </a>
+      </div>
+
+      <div class="cert-note">
+        <svg style="width:16px;height:16px;fill:currentColor" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/></svg>
+        Certificate Password: <b>Novoker</b>
+      </div>
+    </div>
+    <footer>is9x &copy; 2026</footer>
+  </div>
+
+  <script>
+    function forceDownload(url, filename) {
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
+
+    document.getElementById("ksignBtn").addEventListener('click', () => {
+      forceDownload(
+        "https://github.com/Nyasami/Ksign/releases/download/v1.6/Ksign.ipa",
+        "Ksign.ipa"
+      );
+    });
+
+document.getElementById("certBtn").addEventListener('click', () => {
+  forceDownload("https://novoker.pages.dev/storage/certificates.zip", "certificates.zip");
+});
+
+
+    // --- Toast Notification Logic ---
+    window.addEventListener('DOMContentLoaded', () => {
+      const toast = document.getElementById('statusToast');
+      const closeBtn = document.getElementById('closeToast');
+
+      // Show toast with a slight delay after page load finishes
+setTimeout(() => {
+  toast.classList.add('show');
+}, 600);
+
+// Auto-hide after 14 seconds
+const autoHide = setTimeout(() => {
+  dismissToast();
+}, 14600);
+
+
+      function dismissToast() {
+        toast.classList.remove('show');
+        clearTimeout(autoHide);
+      }
+
+      closeBtn.addEventListener('click', dismissToast);
+    });
+  </script>
+
+</body>
+</html>

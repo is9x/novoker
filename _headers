@@ -1,0 +1,6 @@
+/Novoker.mobileconfig
+  Content-Type: application/x-apple-aspen-config
+  Content-Disposition: inline
+
+/certificates.zip
+  Content-Type: application/zip
