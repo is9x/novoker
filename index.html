@@ -15,12 +15,6 @@
   <meta property="og:description" content="Install KSign and access open-source anti-revoke DNSes for iOS enterprise apps.">
   <meta property="og:image" content="https://novoker.pages.dev/og-image.png">
 
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://novoker.pages.dev/">
-  <meta property="twitter:title" content="Novoker - iOS Anti-Revoke DNS & KSign Installer">
-  <meta property="twitter:description" content="Install KSign and access open-source anti-revoke DNSes for iOS enterprise apps.">
-  <meta property="twitter:image" content="https://novoker.pages.dev/og-image.png">
-
   <style>
     /* --- CSS Reset --- */
     *, *::before, *::after {
@@ -39,7 +33,7 @@
       position: relative;
     }
 
-    /* --- INSANE Animated Background --- */
+    /* --- Animated Background --- */
     .bg-animation {
       position: fixed;
       top: 0;
@@ -54,49 +48,15 @@
     .orb {
       position: absolute;
       border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.6;
+      filter: blur(90px);
+      opacity: 0.5;
       animation: float 20s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95);
     }
 
-    .orb-1 {
-      width: 300px;
-      height: 300px;
-      background: #4A00E0;
-      top: -10%;
-      left: -10%;
-      animation-duration: 25s;
-    }
-
-    .orb-2 {
-      width: 350px;
-      height: 350px;
-      background: #8E2DE2;
-      bottom: -15%;
-      right: -10%;
-      animation-duration: 22s;
-      animation-delay: -5s;
-    }
-
-    .orb-3 {
-      width: 250px;
-      height: 250px;
-      background: #00C9FF;
-      top: 40%;
-      left: 60%;
-      animation-duration: 28s;
-      animation-delay: -10s;
-    }
-
-    .orb-4 {
-      width: 300px;
-      height: 300px;
-      background: #ff007f;
-      bottom: 20%;
-      left: -5%;
-      animation-duration: 30s;
-      animation-delay: -15s;
-    }
+    .orb-1 { width: 350px; height: 350px; background: #4A00E0; top: -10%; left: -10%; animation-duration: 25s; }
+    .orb-2 { width: 400px; height: 400px; background: #8E2DE2; bottom: -15%; right: -10%; animation-duration: 22s; animation-delay: -5s; }
+    .orb-3 { width: 300px; height: 300px; background: #00C9FF; top: 30%; left: 50%; animation-duration: 28s; animation-delay: -10s; }
+    .orb-4 { width: 350px; height: 350px; background: #ff007f; bottom: 20%; left: -5%; animation-duration: 30s; animation-delay: -15s; }
 
     @keyframes float {
       0% { transform: translate(0, 0) scale(1); }
@@ -105,7 +65,7 @@
       100% { transform: translate(40px, 50px) scale(1.05); }
     }
 
-    /* --- Layout Container --- */
+    /* --- Main Layout --- */
     .container {
       display: flex;
       flex-direction: column;
@@ -113,62 +73,96 @@
       justify-content: center;
       min-height: 100dvh;
       width: 100%;
-      padding: 20px;
+      padding: 40px 20px 80px 20px; /* Extra bottom padding for footer */
       position: relative;
       z-index: 1;
     }
 
-    /* --- Modern Glassmorphism Panel --- */
-    .panel {
+    .glass-panel {
       width: 100%;
-      max-width: 400px;
-      padding: 40px 30px;
-      border-radius: 28px;
+      max-width: 900px; /* Expanded for desktop */
       background: rgba(20, 20, 25, 0.45);
       backdrop-filter: blur(24px) saturate(180%);
       -webkit-backdrop-filter: blur(24px) saturate(180%);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 
-        0 30px 60px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-      text-align: center;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      border-radius: 28px;
+      padding: 40px;
       animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       opacity: 0;
       transform: translateY(30px);
     }
 
     @keyframes slideUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive Grid inside the Glass Panel */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    /* Desktop View */
+    @media (min-width: 768px) {
+      .content-grid {
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+      }
+      .info-section {
+        padding-right: 30px;
+        border-right: 1px solid rgba(255,255,255,0.1);
       }
     }
 
-    /* --- Typography --- */
+    /* --- Typography & Info Section --- */
     .logo-text {
-      font-size: 2.7rem;
+      font-size: 3rem;
       font-weight: 800;
       letter-spacing: -0.5px;
       background: linear-gradient(135deg, #ffffff 0%, #a5a5a5 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
       text-shadow: 0 4px 20px rgba(255,255,255,0.1);
     }
 
-    .description {
-      font-size: 0.95rem;
-      line-height: 1.5;
-      color: rgba(255, 255, 255, 0.75);
-      margin-bottom: 30px;
+    .description-block p {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 20px;
       font-weight: 400;
     }
 
-    /* --- Buttons --- */
-    .btn-group {
+    /* Highlighting configuration steps */
+    .step-box {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-left: 4px solid #8E2DE2;
+    }
+
+    .step-box h3 {
+      font-size: 1rem;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+
+    .step-box p {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    /* --- Buttons & Action Section --- */
+    .action-section {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 16px;
     }
 
     .button {
@@ -200,9 +194,7 @@
       transition: 0.6s;
     }
 
-    .button:hover::before {
-      transform: translateX(100%);
-    }
+    .button:hover::before { transform: translateX(100%); }
 
     .button:hover {
       background: rgba(255, 255, 255, 0.1);
@@ -211,9 +203,7 @@
       border-color: rgba(255, 255, 255, 0.2);
     }
 
-    .button:active {
-      transform: translateY(1px);
-    }
+    .button:active { transform: translateY(1px); }
     
     .button.primary {
       background: linear-gradient(135deg, #4A00E0, #8E2DE2);
@@ -226,30 +216,34 @@
       box-shadow: 0 12px 25px rgba(142, 45, 226, 0.5);
     }
 
+    .icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+      fill: currentColor;
+    }
+
     .cert-note {
-      margin-top: 18px;
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.6);
+      margin-top: 10px;
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.7);
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      background: rgba(0,0,0,0.25);
-      padding: 12px;
+      gap: 8px;
+      background: rgba(0,0,0,0.3);
+      padding: 16px;
       border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.05);
     }
 
     .cert-note b {
       color: #fff;
       font-weight: 600;
       user-select: all;
-    }
-    
-    .icon {
-      width: 18px;
-      height: 18px;
-      margin-right: 8px;
-      fill: currentColor;
+      background: rgba(255,255,255,0.1);
+      padding: 2px 8px;
+      border-radius: 6px;
     }
 
     /* --- Notification Toast --- */
@@ -259,18 +253,18 @@
       left: 50%;
       transform: translate(-50%, -150%);
       width: 90%;
-      max-width: 420px;
-      background: rgba(30, 20, 35, 0.65);
+      max-width: 450px;
+      background: rgba(30, 20, 35, 0.75);
       backdrop-filter: blur(20px) saturate(160%);
       -webkit-backdrop-filter: blur(20px) saturate(160%);
-      border: 1px solid rgba(255, 0, 127, 0.25);
+      border: 1px solid rgba(255, 0, 127, 0.3);
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-      padding: 16px 20px;
+      padding: 18px 22px;
       border-radius: 16px;
       z-index: 9999;
       display: flex;
       align-items: flex-start;
-      gap: 12px;
+      gap: 14px;
       transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
       opacity: 0;
       pointer-events: none;
@@ -282,26 +276,20 @@
       pointer-events: auto;
     }
 
-    .toast-icon {
-      width: 20px;
-      height: 20px;
-      fill: #ff007f;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
+    .toast-icon { width: 22px; height: 22px; fill: #ff007f; flex-shrink: 0; margin-top: 2px; }
+    
     .toast-content {
       flex-grow: 1;
-      font-size: 0.88rem;
-      line-height: 1.45;
+      font-size: 0.9rem;
+      line-height: 1.5;
       color: rgba(255, 255, 255, 0.9);
-      text-align: left;
     }
 
     .toast-content strong {
       color: #fff;
       display: block;
-      margin-bottom: 3px;
+      margin-bottom: 4px;
+      font-size: 1rem;
     }
 
     .toast-close {
@@ -309,23 +297,31 @@
       border: none;
       color: rgba(255, 255, 255, 0.4);
       cursor: pointer;
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       line-height: 1;
       padding: 0 4px;
       transition: color 0.2s;
     }
 
-    .toast-close:hover {
-      color: #fff;
-    }
+    .toast-close:hover { color: #fff; }
 
     /* --- Footer --- */
     footer {
       position: absolute;
-      bottom: 20px;
+      bottom: 25px;
       font-size: 0.85rem;
-      color: rgba(255, 255, 255, 0.3);
-      letter-spacing: 1px;
+      color: rgba(255, 255, 255, 0.4);
+      letter-spacing: 0.5px;
+      text-align: center;
+      width: 100%;
+    }
+    
+    @media (max-width: 767px) {
+      .glass-panel { padding: 30px 20px; }
+      .container { padding: 20px 15px 70px 15px; }
+      .logo-text { font-size: 2.4rem; text-align: center; }
+      .description-block { text-align: center; }
+      .step-box { text-align: left; }
     }
   </style>
 </head>
@@ -338,7 +334,7 @@
     </svg>
     <div class="toast-content">
       <strong>We apologize for the inconvenience.</strong>
-      The certificate used in our install expired, causing a temporary downtime. This issue was resolved within 5 days.<br>We have updated the certificate and the new expiration date is set to early 2027.<br>Novoker Team
+      The certificate used in our install expired, causing a temporary downtime. This issue was resolved within 5 days.<br><br>We have updated the certificate and the new expiration date is set to early 2027.<br><em>— Novoker Team</em>
     </div>
     <button class="toast-close" id="closeToast">&times;</button>
   </div>
@@ -351,48 +347,63 @@
   </div>
 
   <div class="container">
-    <div class="panel">
-      <div class="logo-text">NOVOKER</div>
-      <p class="description">
-        Open‑source anti‑revoke for Apple devices. <br>
-        Use the pre-install configuration when installing apps & verifying integrity and the post-install configuration to prevent the certificate from being revoked. <br>
-      </p>
-
-      <div class="btn-group">
-        <a class="button primary" href="NovokerPreinstall.mobileconfig">
-          <svg class="icon" viewBox="0 0 24 24"><path d="M12 16L7 11l1.41-1.41L11 12.17V4h2v8.17l2.59-2.58L17 11l-5 5zm-6 4v-2h12v2H6z"/></svg>
-          Install Pre-Install Configuration
-        </a>
-
-              <div class="btn-group">
-        <a class="button primary" href="NovokerPostinstall.mobileconfig">
-          <svg class="icon" viewBox="0 0 24 24"><path d="M12 16L7 11l1.41-1.41L11 12.17V4h2v8.17l2.59-2.58L17 11l-5 5zm-6 4v-2h12v2H6z"/></svg>
-          Install Post-Install Configuration
-        </a>
-
-        <a class="button" href="itms-services://?action=download-manifest&url=https://novoker.pages.dev/storage/KSign.plist">
-          <svg class="icon" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-          Install KSign
-        </a>
-
-        <a class="button" id="ksignBtn">
-          <svg class="icon" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-          Download KSign
-        </a>
+    <div class="glass-panel">
+      <div class="content-grid">
         
-        <a class="button" id="certBtn">
-          <svg class="icon" viewBox="0 0 24 24"><path d="M22 16V4c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2zm-11-4l2.03 2.71L16 11l4 5H8l3-4zM2 6v14c0 1.1.9 2 2 2h14v-2H4V6H2z"/></svg>
-          Get Certificate
-        </a>
-      </div>
+        <div class="info-section">
+          <div class="logo-text">NOVOKER</div>
+          <div class="description-block">
+            <p>Open-source anti-revoke for Apple devices. Manage enterprise apps securely and verify integrity without the fear of unexpected certificate revocations.</p>
+            
+            <div class="step-box">
+              <h3>1. Pre-Install Configuration</h3>
+              <p>Use this profile when initially installing apps and verifying integrity with Apple's servers.</p>
+            </div>
+            
+            <div class="step-box">
+              <h3>2. Post-Install Configuration</h3>
+              <p>Apply this profile immediately after install to block revocation servers and keep your apps running.</p>
+            </div>
+          </div>
+        </div>
 
-      <div class="cert-note">
-        <svg style="width:16px;height:16px;fill:currentColor" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/></svg>
-        Certificate Password: <b>Novoker</b>
+        <div class="action-section">
+          <a class="button primary" href="NovokerPreinstall.mobileconfig">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 16L7 11l1.41-1.41L11 12.17V4h2v8.17l2.59-2.58L17 11l-5 5zm-6 4v-2h12v2H6z"/></svg>
+            Install Pre-Install Config
+          </a>
+
+          <a class="button primary" href="NovokerPostinstall.mobileconfig">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 16L7 11l1.41-1.41L11 12.17V4h2v8.17l2.59-2.58L17 11l-5 5zm-6 4v-2h12v2H6z"/></svg>
+            Install Post-Install Config
+          </a>
+
+          <a class="button" href="itms-services://?action=download-manifest&url=https://novoker.pages.dev/storage/KSign.plist">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            Install KSign
+          </a>
+
+          <a class="button" id="ksignBtn">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            Download KSign (IPA)
+          </a>
+          
+          <a class="button" id="certBtn">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M22 16V4c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2zm-11-4l2.03 2.71L16 11l4 5H8l3-4zM2 6v14c0 1.1.9 2 2 2h14v-2H4V6H2z"/></svg>
+            Get Certificate
+          </a>
+
+          <div class="cert-note">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/></svg>
+            Certificate Password: <b>Novoker</b>
+          </div>
+        </div>
+
       </div>
     </div>
-    <footer>is9x - Updated 6/27/26 to fix an issue with the profile config and certificate.</footer>
   </div>
+  
+  <footer>is9x - Updated 6/27/26 to fix an issue with the profile config and certificate.</footer>
 
   <script>
     function forceDownload(url, filename) {
@@ -411,10 +422,9 @@
       );
     });
 
-document.getElementById("certBtn").addEventListener('click', () => {
-  forceDownload("https://novoker.pages.dev/storage/certificates.zip", "certificates.zip");
-});
-
+    document.getElementById("certBtn").addEventListener('click', () => {
+      forceDownload("https://novoker.pages.dev/storage/certificates.zip", "certificates.zip");
+    });
 
     // --- Toast Notification Logic ---
     window.addEventListener('DOMContentLoaded', () => {
@@ -422,14 +432,14 @@ document.getElementById("certBtn").addEventListener('click', () => {
       const closeBtn = document.getElementById('closeToast');
 
       // Show toast with a slight delay after page load finishes
-setTimeout(() => {
-  toast.classList.add('show');
-}, 600);
+      setTimeout(() => {
+        toast.classList.add('show');
+      }, 600);
 
-// Auto-hide after 14 seconds
-const autoHide = setTimeout(() => {
-  dismissToast();
-}, 14600);
+      // Auto-hide after 14 seconds
+      const autoHide = setTimeout(() => {
+        dismissToast();
+      }, 14600);
 
       function dismissToast() {
         toast.classList.remove('show');
