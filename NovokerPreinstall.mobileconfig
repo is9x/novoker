@@ -5,10 +5,8 @@
     <key>ConsentText</key>
     <dict>
         <key>default</key>
-        <string>Description: Novoker Pre-Install Profile. Run this BEFORE launching a newly sideloaded app to allow initial verification.
-
-🔒 Official Website: https://novoker.pages.dev
-🌐 Source Code: https://github.com/is9x/novoker</string>
+        <string>Novoker Pre-Install: Allows initial app verification. Please install this before launching your new app for the first time. 
+https://novoker.pages.dev</string>
     </dict>
     <key>PayloadContent</key>
     <array>
@@ -51,7 +49,7 @@
                 </dict>
             </array>
             <key>PayloadDisplayName</key>
-            <string>Novoker Pre-Install (Install Only)</string>
+            <string>Novoker Pre-Install</string>
             <key>PayloadIdentifier</key>
             <string>com.novoker.dns.preinstall</string>
             <key>PayloadType</key>
@@ -64,8 +62,6 @@
     </array>
     <key>PayloadDisplayName</key>
     <string>Novoker Pre-Install</string>
-    <key>PayloadDescription</key>
-    <string>Temporary profile for first-launch app verification.</string>
     <key>PayloadIdentifier</key>
     <string>com.novoker.profile.preinstall</string>
     <key>PayloadOrganization</key>

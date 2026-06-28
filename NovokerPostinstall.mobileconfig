@@ -5,10 +5,8 @@
     <key>ConsentText</key>
     <dict>
         <key>default</key>
-        <string>Description: Novoker Post-Install Profile. Install this AFTER your app opens successfully to permanently block Apple's revoke servers on Wi-Fi and Cellular.
-
-🔒 Official Website: https://novoker.pages.dev
-🌐 Source Code: https://github.com/is9x/novoker</string>
+        <string>Novoker Post-Install: Permanently blocks Apple's verification servers to prevent revokes. Install AFTER app verification.
+https://novoker.pages.dev</string>
     </dict>
     <key>PayloadContent</key>
     <array>
@@ -52,7 +50,7 @@
                 </dict>
             </array>
             <key>PayloadDisplayName</key>
-            <string>Novoker Post-Install (Full Block)</string>
+            <string>Novoker Post-Install</string>
             <key>PayloadIdentifier</key>
             <string>com.novoker.dns.postinstall</string>
             <key>PayloadType</key>
@@ -65,8 +63,6 @@
     </array>
     <key>PayloadDisplayName</key>
     <string>Novoker Post-Install</string>
-    <key>PayloadDescription</key>
-    <string>Permanent system firewall for Novoker to block revokes.</string>
     <key>PayloadIdentifier</key>
     <string>com.novoker.profile.postinstall</string>
     <key>PayloadOrganization</key>
