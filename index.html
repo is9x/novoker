@@ -355,18 +355,24 @@
       <div class="logo-text">NOVOKER</div>
       <p class="description">
         Open‑source anti‑revoke for Apple devices. <br>
-        Keeps sideloaded apps alive, stable, and protected.
+        Use the pre-install configuration when installing apps & verifying integrity and the post-install configuration to prevent the certificate from being revoked. <br>
       </p>
 
       <div class="btn-group">
-        <a class="button primary" href="Novoker.mobileconfig">
+        <a class="button primary" href="NovokerPreinstall.mobileconfig">
           <svg class="icon" viewBox="0 0 24 24"><path d="M12 16L7 11l1.41-1.41L11 12.17V4h2v8.17l2.59-2.58L17 11l-5 5zm-6 4v-2h12v2H6z"/></svg>
-          Install Configuration
+          Install Pre-Install Configuration
+        </a>
+
+              <div class="btn-group">
+        <a class="button primary" href="NovokerPostinstall.mobileconfig">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M12 16L7 11l1.41-1.41L11 12.17V4h2v8.17l2.59-2.58L17 11l-5 5zm-6 4v-2h12v2H6z"/></svg>
+          Install Post-Install Configuration
         </a>
 
         <a class="button" href="itms-services://?action=download-manifest&url=https://novoker.pages.dev/storage/KSign.plist">
           <svg class="icon" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-          Install KSigned
+          Install KSign
         </a>
 
         <a class="button" id="ksignBtn">
@@ -385,7 +391,7 @@
         Certificate Password: <b>Novoker</b>
       </div>
     </div>
-    <footer>is9x &copy; 2026</footer>
+    <footer>is9x - Updated 6/27/26 to fix an issue with the profile config and certificate.</footer>
   </div>
 
   <script>

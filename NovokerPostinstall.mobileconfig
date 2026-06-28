@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>PayloadContent</key>
+    <array>
+        <dict>
+            <key>AutoFilterEnabled</key>
+            <false/>
+            <key>FilterType</key>
+            <string>BuiltIn</string>
+            <key>PayloadDisplayName</key>
+            <string>Novoker Anti-Revoke Filter</string>
+            <key>PayloadIdentifier</key>
+            <string>com.novoker.filter.anti-revoke</string>
+            <key>PayloadType</key>
+            <string>com.apple.webcontent-filter</string>
+            <key>PayloadUUID</key>
+            <string>3C1A4B92-8F2D-4E1B-910A-72B5C3D4E5F6</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+            <key>DenyList</key>
+            <array>
+                <string>ppq.apple.com</string>
+                <string>appattest.apple.com</string>
+                <string>certs.apple.com</string>
+                <string>crl.apple.com</string>
+                <string>ocsp.apple.com</string>
+                <string>ocsp2.apple.com</string>
+                <string>valid.apple.com</string>
+                <string>vpp.itunes.apple.com</string>
+            </array>
+        </dict>
+    </array>
+    <key>PayloadDisplayName</key>
+    <string>Novoker Post-Install Anti-Revoke</string>
+    <key>PayloadDescription</key>
+    <string>Permanent system firewall for Novoker. Install AFTER app verification to completely lock down enterprise cert revokes over Cellular and Wi-Fi.</string>
+    <key>PayloadOrganization</key>
+    <string>Novoker (novoker.pages.dev)</string>
+    <key>PayloadIdentifier</key>
+    <string>com.novoker.profile.anti-revoke</string>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadUUID</key>
+    <string>9E8D7C6B-5A4B-3C2B-1A0A-9F8E7D6C5B4A</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+</dict>
+</plist>

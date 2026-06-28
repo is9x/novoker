@@ -1,4 +1,8 @@
-/Novoker.mobileconfig
+/NovokerPostinstall.mobileconfig
+  Content-Type: application/x-apple-aspen-config
+  Content-Disposition: inline
+
+  /NovokerPreinstall.mobileconfig
   Content-Type: application/x-apple-aspen-config
   Content-Disposition: inline
 
