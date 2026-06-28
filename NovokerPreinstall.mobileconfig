@@ -2,6 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>ConsentText</key>
+    <dict>
+        <key>default</key>
+        <string>Description: Novoker Pre-Install Profile. Run this BEFORE launching a newly sideloaded app to allow initial verification.
+
+🔒 Official Website: https://novoker.pages.dev
+🌐 Source Code: https://github.com/is9x/novoker</string>
+    </dict>
     <key>PayloadContent</key>
     <array>
         <dict>
@@ -11,31 +19,61 @@
                 <string>HTTPS</string>
                 <key>ServerURL</key>
                 <string>https://localhost.direct</string>
+                <key>SupplementalMatchDomains</key>
+                <array>
+                    <string>ocsp.apple.com</string>
+                    <string>ocsp2.apple.com</string>
+                    <string>valid.apple.com</string>
+                    <string>crl.apple.com</string>
+                    <string>certs.apple.com</string>
+                    <string>appattest.apple.com</string>
+                    <string>vpp.itunes.apple.com</string>
+                    <string>ocsp2-lb.apple.com</string>
+                    <string>ocsp2.g.aaplimg.com</string>
+                    <string>crl3.digicert.com</string>
+                    <string>crl4.digicert.com</string>
+                    <string>ocsp.digicert.cn</string>
+                    <string>ocsp.digicert.com</string>
+                    <string>ocsp2-lb.apple.com.akadns.net</string>
+                    <string>gdmf.apple.com</string>
+                    <string>crl5.digicert.com</string>
+                    <string>crl2.digicert.com</string>
+                    <string>crl.digicert.com</string>
+                    <string>crl2.apple.com</string>
+                    <string>crl3.apple.com</string>
+                </array>
             </dict>
+            <key>OnDemandRules</key>
+            <array>
+                <dict>
+                    <key>Action</key>
+                    <string>Connect</string>
+                </dict>
+            </array>
             <key>PayloadDisplayName</key>
-            <string>Novoker Pre-Install DNS</string>
+            <string>Novoker Pre-Install (Install Only)</string>
             <key>PayloadIdentifier</key>
             <string>com.novoker.dns.preinstall</string>
             <key>PayloadType</key>
             <string>com.apple.dnsSettings.managed</string>
             <key>PayloadUUID</key>
-            <string>74A1B2C3-D4E5-4F6A-8B9C-0123456789AB</string>
+            <string>E9C5142D-E98F-4ABE-A83B-12AEE78F2E00</string>
             <key>PayloadVersion</key>
             <integer>1</integer>
         </dict>
     </array>
     <key>PayloadDisplayName</key>
-    <string>Novoker Pre-Install DNS</string>
+    <string>Novoker Pre-Install</string>
     <key>PayloadDescription</key>
-    <string>Temporary DNS profile for Novoker. Run this BEFORE launching a newly sideloaded app to allow initial certificate validation.</string>
-    <key>PayloadOrganization</key>
-    <string>Novoker (novoker.pages.dev)</string>
+    <string>Temporary profile for first-launch app verification.</string>
     <key>PayloadIdentifier</key>
     <string>com.novoker.profile.preinstall</string>
+    <key>PayloadOrganization</key>
+    <string>Novoker Team</string>
     <key>PayloadType</key>
     <string>Configuration</string>
     <key>PayloadUUID</key>
-    <string>1A2B3C4D-5E6F-7A8B-9C0D-1E2F3A4B5C6D</string>
+    <string>288799F8-E825-4401-BAD9-8869F9914AF7</string>
     <key>PayloadVersion</key>
     <integer>1</integer>
 </dict>
