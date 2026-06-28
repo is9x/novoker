@@ -27,7 +27,7 @@
     <key>PayloadDisplayName</key>
     <string>Novoker Pre-Install DNS</string>
     <key>PayloadDescription</key>
-    <string>Temporary DNS profile for Novoker. Run this BEFORE launching a newly sideloaded app to allow the initial certificate verification.</string>
+    <string>Temporary DNS profile for Novoker. Run this BEFORE launching a newly sideloaded app to allow initial certificate validation.</string>
     <key>PayloadOrganization</key>
     <string>Novoker (novoker.pages.dev)</string>
     <key>PayloadIdentifier</key>
